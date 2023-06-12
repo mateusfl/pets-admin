@@ -1,0 +1,10 @@
+{
+  "appointments": [
+    {
+      "id": 0,
+      "patient": "Doguinho da silva",
+      "tutor": "Fulano de tal",
+      "time": "14:00"
+    }
+  ]
+}
