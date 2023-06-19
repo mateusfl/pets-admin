@@ -20,7 +20,7 @@ const pages = [
   { name: "clientes", link: "clientes" },
   { name: "nova consulta", link: "nova-consulta" },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Preferências", "Sair"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -124,7 +124,13 @@ function ResponsiveAppBar() {
           >
             PETS
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+            }}
+          >
             {pages.map((page, index) => (
               <Button
                 key={index}
@@ -139,7 +145,7 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Menu de usuário">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
