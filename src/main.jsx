@@ -7,6 +7,8 @@ import Index from "./routes";
 import NewAppointment from "./routes/NewAppointment";
 import Appointment from "./routes/Appointment";
 import Clients from "./routes/Clients";
+import Login from "./routes/Login";
+import Profile from "./routes/Profile";
 import { loader as appointmentLoader } from "./loaders";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -41,8 +43,16 @@ const router = createBrowserRouter([
         path: "clientes/",
         element: <Clients title="Clientes" />,
       },
+      {
+        path: "perfil/",
+        element: <Profile title="Perfil" />,
+      }
     ],
   },
+  {
+    path: "/login",
+    element: <Login />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

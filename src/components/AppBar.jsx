@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import PetsIcon from "@mui/icons-material/Pets";
+import { pb } from "../lib/utils";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
@@ -20,9 +22,9 @@ const pages = [
   { name: "clientes", link: "clientes" },
   { name: "nova consulta", link: "nova-consulta" },
 ];
-const settings = ["Preferências", "Sair"];
 
 function ResponsiveAppBar() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -39,6 +41,10 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handleLogout = () => {
+    pb.authStore.clear();
+    navigate("/login");
   };
 
   return (
@@ -147,7 +153,10 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Menu de usuário">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt="foto de perfil"
+                  src={`http://127.0.0.1:8090/api/files/${pb.authStore.model?.collectionName}/${pb.authStore.model?.id}/gato_na_janela_UrXrjKDvWs.png`}
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -166,11 +175,19 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  component={Link}
+                  to="/perfil"
+                  sx={{ textDecoration: "none", color: "inherit" }}
+                  textAlign="center"
+                >
+                  perfil
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center">Sair</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
