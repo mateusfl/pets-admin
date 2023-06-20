@@ -1,6 +1,4 @@
 import { Typography } from "@mui/material";
-import { Grid } from "@mui/material";
-import OutlinedCard from "../components/AppointmentCard";
 import { useQuery } from "@tanstack/react-query";
 import AppointmentsTable from "../components/AppointmentsTable";
 
@@ -8,7 +6,7 @@ export default function Appointments({ title }) {
   const { isLoading, error, data } = useQuery({
     queryKey: ["appointments"],
     queryFn: () =>
-      fetch("http://localhost:3000/appointments").then((res) => res.json()),
+      fetch("http://127.0.0.1:8090/api/collections/appointments/records").then((res) => res.json()),
   });
 
   return (
@@ -20,7 +18,7 @@ export default function Appointments({ title }) {
       ) : (
         ""
       )}
-      <AppointmentsTable tableData={data}/>
+      <AppointmentsTable tableData={data?.items}/>
     </>
   );
 }

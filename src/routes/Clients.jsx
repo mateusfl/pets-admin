@@ -5,7 +5,7 @@ import ClientsTable from "../components/ClientsTable";
 export default function Clients({ title }) {
   const { isLoading, data } = useQuery({
     queryKey: ["clients"],
-    queryFn: () => fetch("http://localhost:3000/clients").then((res) => res.json()),
+    queryFn: () => fetch("http://127.0.0.1:8090/api/collections/clients/records").then((res) => res.json()),
   });
 
   return (
@@ -18,7 +18,7 @@ export default function Clients({ title }) {
         ""
       )}
 
-      <ClientsTable tableData={data}/>
+      <ClientsTable tableData={data?.items}/>
     </>
   );
 }

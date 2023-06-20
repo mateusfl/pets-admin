@@ -20,7 +20,7 @@ export default function OutlinedCard({ id, tutor, patient, time }) {
 
   const mutation = useMutation({
     mutationFn: (id) =>
-      fetch(`http://localhost:3000/appointments/${id}`, { method: "DELETE" }),
+      fetch(`http://127.0.0.1:8090/api/collections/appointments/records/${id}`, { method: "DELETE" }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["appointments"] });
     },

@@ -10,11 +10,11 @@ export default function Index() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["appointments"],
     queryFn: () =>
-      fetch("http://localhost:3000/appointments").then((res) => res.json()),
+      fetch("http://127.0.0.1:8090/api/collections/appointments/records").then((res) => res.json()),
   });
 
   const todayAppointments =
-    data && data.filter((item) => new Date(item.time).toDateString() == today);
+    data && data.items.filter((item) => new Date(item.time).toDateString() == today);
 
   return (
     <>

@@ -3,7 +3,6 @@ import { Button } from "@mui/material";
 import { Typography } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { useForm, Controller } from "react-hook-form";
-import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function NewAppointment({ title }) {
@@ -17,7 +16,7 @@ export default function NewAppointment({ title }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const res = await fetch("http://localhost:3000/appointments", {
+    const res = await fetch("http://127.0.0.1:8090/api/collections/appointments/records", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
