@@ -14,7 +14,7 @@ export default function ClientsTable({ tableData }) {
 
   const mutation = useMutation({
     mutationFn: (id) =>
-      fetch(`http://localhost:3000/clients/${id}`, { method: "DELETE" }),
+      fetch(`http://127.0.0.1:8090/api/collections/clients/records/${id}`, { method: "DELETE" }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["clients"] });
     },
